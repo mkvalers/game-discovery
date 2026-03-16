@@ -1,7 +1,61 @@
 import axios from "axios";
-import type { GameDetails, RawgGameDetailsResponse } from "./rawg-api-types-common";
-import type { FetchGenresResponse } from "./hooks/useGenres";
-import type { FetchGamesResponse } from "./hooks/useGames";
+import type { GameOrdering } from "../features/game-grid/hooks/useGameOrdering";
+
+interface RawgNamedItem {
+    name: string;
+}
+
+export interface Game {
+    id: number;
+    slug: string;
+    name: string;
+    released?: string;
+    background_image?: string;
+    rating: number;
+    metacritic?: number;
+}
+
+export interface FetchGamesResponse {
+    count: number;
+    next?: string;
+    previous?: string;
+    results: Game[];
+}
+
+export interface Genre {
+    id: number;
+    name: string;
+    slug: string;
+    games_count?: number;
+    image_background?: string;
+}
+
+export interface FetchGenresResponse {
+    count: number;
+    next?: string;
+    previous?: string;
+    results: Genre[];
+}
+
+interface RawgGameInfoResponse {
+    id: number;
+    name: string;
+    description: string;
+    background_image?: string;
+    released?: string;
+    genres?: RawgNamedItem[];
+    developers?: RawgNamedItem[];
+}
+
+export interface GameInfo {
+    id: number;
+    name: string;
+    image?: string;
+    about: string;
+    genre: string[];
+    releaseDate?: string;
+    developer: string[];
+}
 
 const apiKey = import.meta.env.VITE_RAWG_API_KEY;
 
@@ -13,10 +67,28 @@ class RawgApiClient {
         },
     });
 
-    getGames = (genreId?: number): Promise<FetchGamesResponse> => {
+    getGames = (
+        genreId?: number,
+        searchQuery?: string,
+        ordering?: GameOrdering,
+    ): Promise<FetchGamesResponse> => {
+        const params: { genres?: number; search?: string; ordering?: GameOrdering } = {};
+
+        if (genreId) {
+            params.genres = genreId;
+        }
+
+        if (searchQuery) {
+            params.search = searchQuery;
+        }
+
+        if (ordering) {
+            params.ordering = ordering;
+        }
+
         return this.apiClient
             .get("/games", {
-                params: genreId ? { genres: genreId } : undefined,
+                params: Object.keys(params).length > 0 ? params : undefined,
             })
             .then((response) => response.data)
             .catch((error) => {
@@ -35,9 +107,9 @@ class RawgApiClient {
             });
     };
 
-    getGameInfo = (id: number): Promise<GameDetails> => {
+    getGameInfo = (id: number): Promise<GameInfo> => {
         return this.apiClient
-            .get<RawgGameDetailsResponse>(`/games/${id}`)
+            .get<RawgGameInfoResponse>(`/games/${id}`)
             .then((response) => {
                 const game = response.data;
 

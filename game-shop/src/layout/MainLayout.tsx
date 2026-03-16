@@ -1,13 +1,17 @@
 import { Box } from "@chakra-ui/react/box";
 import NavBar from "../components/NavBar";
 import { Grid, GridItem } from "@chakra-ui/react";
-import AsideBar from "../components/AsideBar";
+import AsideBar from "../features/genre-filter/components/AsideBar";
 import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   return (
     <>
-      <Box mx={{ base: 3, md: 6, lg: 10 }} my={{ base: 4, md: 6, lg: 5 }}>
+      <Box
+        minH="100vh"
+        mx={{ base: 3, md: 6, lg: 10 }}
+        my={{ base: 4, md: 6, lg: 5 }}
+      >
         <Grid
           templateAreas={{
             base: `"nav" "main"`,

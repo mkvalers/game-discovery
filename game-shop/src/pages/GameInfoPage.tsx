@@ -1,56 +1,109 @@
-import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import type { Game } from "../api-clients/hooks/useGames";
-import useGameInfo from "../api-clients/hooks/useGameInfo";
-
-interface GameInfoLocationState {
-  game?: Game;
-}
+import { Badge, Box, HStack, Stack, Text } from "@chakra-ui/react";
+import BackToGamesButton from "../features/game-info/components/BackToGamesButton";
+import GameInfoHero from "../features/game-info/components/GameInfoHero";
+import GameInfoMetaCard from "../features/game-info/components/GameInfoMetaCard";
+import useGameInfo from "../features/game-info/api/useGameInfo";
+import useGameInfoRouteId from "../features/game-info/hooks/useGameInfoRouteId";
+import useScrollToTopOnMount from "../features/game-info/hooks/useScrollToTopOnMount";
+import { useColorModeValue } from "../components/ui/color-mode";
+import GameInfoSkeleton from "../features/game-info/components/GameInfoSkeleton";
+import CommonSpinner from "../components/CommonSpinner";
 
 const GameInfoPage = () => {
-  const location = useLocation();
-  const state = location.state as GameInfoLocationState | null;
-  const game = state?.game;
+  const { gameId, hasInvalidId } = useGameInfoRouteId();
+  useScrollToTopOnMount();
+  const { data: game, isLoading, isError } = useGameInfo(gameId);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, []);
+  const pageBg = useColorModeValue("gray.50", "gray.950");
+  const surface = useColorModeValue("white", "gray.900");
+  const borderColor = useColorModeValue("gray.200", "whiteAlpha.200");
+  const bodyText = useColorModeValue("gray.700", "gray.300");
+  const subtleText = useColorModeValue("gray.500", "gray.400");
 
-  if (!game) {
+  if (hasInvalidId) {
+    return <Text>Game info is unavailable.</Text>;
+  }
+
+  if (isLoading) {
+    return <CommonSpinner />;
+  }
+
+  if (isError || !game) {
     return <Text>Game info is unavailable.</Text>;
   }
 
   return (
-    <Flex justify="center" align="center">
-      <Box>
-        <Link to="/">
-          <Button variant="ghost" mb={4}>
-            Back
-          </Button>
-        </Link>
-        {game.background_image && (
-          <Image
-            src={game.background_image}
-            alt={game.name}
-            width="full"
-            maxHeight="420px"
-            objectFit="cover"
-            rounded="md"
-            mb={{ base: 3, md: 10 }}
-          />
-        )}
-        <Heading
-          mb={{ base: 4, md: 6 }}
-          fontSize={{ base: "x-large", md: "5xl" }}
-        >
-          {game.name}
-        </Heading>
-        {game.released && <Text>Released: {game.released}</Text>}
-        <Text>Rating: {game.rating}</Text>
-        {game.metacritic && <Text>Metacritic: {game.metacritic}</Text>}
-      </Box>
-    </Flex>
+    <Box bg={pageBg} borderRadius="2xl" p={{ base: 3, md: 5 }}>
+      <BackToGamesButton />
+
+      <Stack gap={{ base: 5, lg: 7 }} pb={10} maxW="6xl" mx="auto">
+        <Stack gap={{ base: 5, lg: 6 }}>
+          <GameInfoHero name={game.name} image={game.image} />
+
+          <Stack gap={5}>
+            <HStack gap={3} wrap="wrap">
+              {game.releaseDate && (
+                <Badge
+                  colorPalette="orange"
+                  variant="subtle"
+                  px={3}
+                  py={1.5}
+                  borderRadius="full"
+                >
+                  Released {game.releaseDate}
+                </Badge>
+              )}
+              {game.genre.slice(0, 3).map((genre) => (
+                <Badge
+                  key={genre}
+                  colorPalette="blue"
+                  variant="subtle"
+                  px={3}
+                  py={1.5}
+                  borderRadius="full"
+                >
+                  {genre}
+                </Badge>
+              ))}
+            </HStack>
+
+            <Box
+              p={{ base: 5, md: 6 }}
+              borderRadius="2xl"
+              bg={surface}
+              borderWidth="1px"
+              borderColor={borderColor}
+              boxShadow="xl"
+            >
+              <Text
+                mb={3}
+                textTransform="uppercase"
+                letterSpacing="0.16em"
+                fontSize="xs"
+                color={subtleText}
+              >
+                About
+              </Text>
+              <Box
+                color={bodyText}
+                lineHeight="tall"
+                dangerouslySetInnerHTML={{ __html: game.about }}
+              />
+            </Box>
+
+            <GameInfoMetaCard
+              label="Developers"
+              value={
+                game.developer.length > 0
+                  ? game.developer.join(", ")
+                  : "Unknown developer"
+              }
+              accentColor="orange.400"
+            />
+          </Stack>
+        </Stack>
+      </Stack>
+    </Box>
   );
 };
 

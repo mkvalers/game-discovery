@@ -7,10 +7,9 @@ interface GenreStore {
 
 const useGenreStore = create<GenreStore>((set) => ({
   genreId: undefined,
-
   setGenreId: (genreId) =>
     set(() => ({
-      genreId
+      genreId,
     })),
 }));
 

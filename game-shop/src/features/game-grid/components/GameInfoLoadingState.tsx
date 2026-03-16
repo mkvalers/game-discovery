@@ -1,10 +1,10 @@
 import { Box, HStack, Skeleton, Stack } from "@chakra-ui/react";
 
-const GameCardSkeleton = () => {
+const GameInfoLoadingState = () => {
   return (
     <Box
       borderWidth="1px"
-      borderRadius="lg"
+      borderRadius="2xl"
       overflow="hidden"
       height="100%"
       display="flex"
@@ -14,7 +14,7 @@ const GameCardSkeleton = () => {
 
       <Box
         m={{ base: 2.5, md: 4 }}
-        minH={{ base: "40px", md: "50px" }}
+        minH={{ base: "56px", md: "72px" }}
         display="flex"
         alignItems="flex-start"
       >
@@ -24,7 +24,7 @@ const GameCardSkeleton = () => {
         </Stack>
       </Box>
 
-      <Box m={{ base: 2.5, md: 4 }} mt={{ base: 0, md: 4 }}>
+      <Box m={{ base: 2.5, md: 4 }} mt={{ base: 0, md: 2 }}>
         <HStack justify="space-between">
           <Skeleton height="20px" width="70px" />
           <Skeleton height="20px" width="96px" />
@@ -34,4 +34,4 @@ const GameCardSkeleton = () => {
   );
 };
 
-export default GameCardSkeleton;
+export default GameInfoLoadingState;

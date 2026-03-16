@@ -1,21 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import rawgApiClient from "../rawg-api-client";
+import rawgApiClient, {
+  type FetchGenresResponse,
+} from "../../../api-clients/rawg-api-client";
 
-export interface Genre {
-  id: number;
-  name: string;
-  slug: string;
-  games_count?: number;
-  image_background?: string;
-}
-
-export interface FetchGenresResponse {
-  count: number;
-  next?: string;
-  previous?: string;
-  results: Genre[];
-}
+export type Genre = FetchGenresResponse["results"][number];
 
 const useGenres = () => {
   return useQuery<FetchGenresResponse, AxiosError>({
