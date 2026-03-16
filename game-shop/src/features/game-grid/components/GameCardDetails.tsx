@@ -1,5 +1,6 @@
 import { Badge, HStack, Text } from "@chakra-ui/react";
 import { useColorModeValue } from "../../../components/ui/color-mode";
+import { FaPlus } from "react-icons/fa";
 
 interface Props {
   price: number;
@@ -23,11 +24,12 @@ const GameCardDetails = ({ price, metacritic }: Props) => {
         <Badge
           colorPalette="green"
           variant="subtle"
-          borderRadius="full"
-          px={2.5}
+          borderRadius="md"
+          px={1.5}
           py={1}
         >
-          MC {metacritic}
+          <FaPlus style={{ display: "inline", marginRight: "2px" }} />
+          {metacritic}
         </Badge>
       )}
     </HStack>

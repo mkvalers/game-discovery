@@ -1,8 +1,9 @@
 import { Box, HStack, Image, Text } from "@chakra-ui/react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.avif";
-import react from "../assets/react.svg";
 import { useColorModeValue } from "./ui/color-mode";
+import { IoCartOutline } from "react-icons/io5";
+import { IoGameControllerOutline } from "react-icons/io5";
 
 const NavBar = () => {
   const surface = useColorModeValue("white", "gray.900");
@@ -39,14 +40,7 @@ const NavBar = () => {
               mr={3}
             >
               <Link to="/">
-                <Image
-                  src={logo}
-                  alt="Logo"
-                  fit={"cover"}
-                  borderRadius="full"
-                  borderWidth="1px"
-                  borderColor={borderColor}
-                />
+                <IoGameControllerOutline size={50} />
               </Link>
             </Box>
 
@@ -80,14 +74,11 @@ const NavBar = () => {
               alignItems="center"
               justifyContent="center"
               borderRadius="full"
-              bg={mutedChip}
               borderWidth="1px"
-              borderColor={borderColor}
               transition="background-color 0.2s ease"
-              _hover={{ bg: mutedChipHover }}
             >
               <Link to="/cart">
-                <Image src={react} alt="React" fit={"cover"} />
+                <IoCartOutline size={40} />
               </Link>
             </Box>
           </HStack>

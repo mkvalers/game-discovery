@@ -1,4 +1,4 @@
-import { Flex, Spinner, Stack, Text } from "@chakra-ui/react";
+import { Spinner, Stack, Text } from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 
 interface Props {
@@ -10,14 +10,12 @@ const CommonSpinner = ({ label = "Loading...", minH = "220px" }: Props) => {
   const textColor = useColorModeValue("gray.600", "gray.300");
 
   return (
-    <Flex justify="center" align="center" minH="100vh">
-      <Stack align="center" justify="center" minH={minH} gap={3}>
-        <Spinner size="xl" color="whiteAlpha.500" borderWidth="3px" />
-        <Text color={textColor} fontSize="sm">
-          {label}
-        </Text>
-      </Stack>
-    </Flex>
+    <Stack align="center" justify="center" minH={minH} gap={3}>
+      <Spinner size="xl" color="whiteAlpha.500" borderWidth="3px" />
+      <Text color={textColor} fontSize="sm">
+        {label}
+      </Text>
+    </Stack>
   );
 };
 

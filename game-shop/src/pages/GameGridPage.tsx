@@ -15,6 +15,7 @@ import useInfiniteScrollLoadMore from "../features/game-grid/hooks/useInfiniteSc
 import useGenres from "../features/genre-filter/api/useGenres";
 import GenreFilterSelect from "../features/genre-filter/components/GenreFilterSelect";
 import useGenreStore from "../features/genre-filter/store/genre-store";
+import CommonSpinner from "../components/CommonSpinner";
 
 const GameGridPage = () => {
   const selectedGenreId = useGenreStore((s) => s.genreId);
@@ -95,9 +96,7 @@ const GameGridPage = () => {
 
       <div ref={loadMoreRef} />
 
-      {isFetchingNextPage && !debouncedSearchQuery && (
-        <Text mt={4}>Loading next page...</Text>
-      )}
+      {isFetchingNextPage && !debouncedSearchQuery && <CommonSpinner />}
       {!hasNextPage && games.length > 0 && (
         <Text mt={4}>You reached the end.</Text>
       )}

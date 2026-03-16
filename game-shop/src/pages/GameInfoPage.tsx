@@ -1,4 +1,4 @@
-import { Badge, Box, HStack, Stack, Text } from "@chakra-ui/react";
+import { Badge, Box, Flex, HStack, Stack, Text } from "@chakra-ui/react";
 import BackToGamesButton from "../features/game-info/components/BackToGamesButton";
 import GameInfoHero from "../features/game-info/components/GameInfoHero";
 import GameInfoMetaCard from "../features/game-info/components/GameInfoMetaCard";
@@ -6,13 +6,12 @@ import useGameInfo from "../features/game-info/api/useGameInfo";
 import useGameInfoRouteId from "../features/game-info/hooks/useGameInfoRouteId";
 import useScrollToTopOnMount from "../features/game-info/hooks/useScrollToTopOnMount";
 import { useColorModeValue } from "../components/ui/color-mode";
-import GameInfoSkeleton from "../features/game-info/components/GameInfoSkeleton";
 import CommonSpinner from "../components/CommonSpinner";
 
 const GameInfoPage = () => {
   const { gameId, hasInvalidId } = useGameInfoRouteId();
-  useScrollToTopOnMount();
   const { data: game, isLoading, isError } = useGameInfo(gameId);
+  useScrollToTopOnMount();
 
   const pageBg = useColorModeValue("gray.50", "gray.950");
   const surface = useColorModeValue("white", "gray.900");
@@ -25,7 +24,13 @@ const GameInfoPage = () => {
   }
 
   if (isLoading) {
-    return <CommonSpinner />;
+    return (
+      <>
+        <Flex align="center" justify="center" minH="75vh">
+          <CommonSpinner />
+        </Flex>
+      </>
+    );
   }
 
   if (isError || !game) {
