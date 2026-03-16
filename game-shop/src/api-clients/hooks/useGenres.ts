@@ -22,7 +22,6 @@ const useGenres = () => {
     queryKey: ["genres"],
     queryFn: async () => await rawgApiClient.genGenres(),
     staleTime: 1000 * 60 * 10,
-    placeholderData: keepPreviousData
   });
 };
 
