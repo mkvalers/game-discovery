@@ -1,4 +1,4 @@
-import { Badge, HStack } from "@chakra-ui/react";
+import { Badge, Stack } from "@chakra-ui/react";
 import { FaPlus } from "react-icons/fa";
 import PlatformIcons from "../../../components/PlatformIcons";
 import type { ParentPlatformEntry } from "../../../api-clients/rawg-api-client";
@@ -10,7 +10,12 @@ interface Props {
 
 const GameCardDetails = ({ platforms, metacritic }: Props) => {
   return (
-    <HStack justify="space-between" align="center" flexWrap="wrap" rowGap={2}>
+    <Stack
+      direction={{ base: "column", md: "row" }}
+      justify="space-between"
+      align={{ base: "flex-start", md: "center" }}
+      gap={2}
+    >
       <PlatformIcons platforms={platforms} />
       {metacritic && (
         <Badge
@@ -24,7 +29,7 @@ const GameCardDetails = ({ platforms, metacritic }: Props) => {
           {metacritic}
         </Badge>
       )}
-    </HStack>
+    </Stack>
   );
 };
 
