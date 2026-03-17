@@ -1,4 +1,4 @@
-import { Box, Grid, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Grid, HStack, SimpleGrid, Text } from "@chakra-ui/react";
 import { type Game } from "../api-clients/hooks/useGames";
 import GameCard from "../features/game-grid/components/GameCard";
 import GameOrderSelect from "../features/game-grid/components/GameOrderSelect";
@@ -61,17 +61,32 @@ const GameGridPage = () => {
           <GameSearchBar value={searchQuery} onChange={setSearchQuery} />
         </Box>
 
-        <Box minW={0} display={{ base: "block", lg: "none" }}>
-          <GenreFilterSelect
-            genres={genresData?.results ?? []}
-            isLoading={isGenresLoading}
-            selectedGenreId={selectedGenreId}
-            onSelectGenre={setSelectedGenreId}
-            showLabel={false}
-          />
-        </Box>
+        <HStack
+          minW={0}
+          gap={3}
+          display={{ base: "flex", lg: "none" }}
+          gridColumn="1 / -1"
+          align="stretch"
+        >
+          <Box minW={0} flex={1}>
+            <GenreFilterSelect
+              genres={genresData?.results ?? []}
+              isLoading={isGenresLoading}
+              selectedGenreId={selectedGenreId}
+              onSelectGenre={setSelectedGenreId}
+              showLabel={false}
+            />
+          </Box>
+          <Box minW={0} flex={1}>
+            <GameOrderSelect
+              value={ordering}
+              options={gameOrderingOptions}
+              onChange={setOrdering}
+            />
+          </Box>
+        </HStack>
 
-        <Box minW={0}>
+        <Box minW={0} display={{ base: "none", lg: "block" }}>
           <GameOrderSelect
             value={ordering}
             options={gameOrderingOptions}
