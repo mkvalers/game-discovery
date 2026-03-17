@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import type { ChangeEvent } from "react";
 import { useColorModeValue } from "../../../components/ui/color-mode";
 import type {
@@ -15,7 +15,6 @@ interface Props {
 const GameOrderSelect = ({ value, options, onChange }: Props) => {
   const bg = useColorModeValue("white", "gray.900");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.200");
-  const textColor = useColorModeValue("gray.700", "gray.300");
   const selectTextColor = useColorModeValue("#1A202C", "#F7FAFC");
   const optionBgColor = useColorModeValue("#FFFFFF", "#1A202C");
 
