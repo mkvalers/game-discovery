@@ -28,7 +28,7 @@ const GameOrderSelect = ({ value, options, onChange }: Props) => {
       <Box
         width="full"
         height="44px"
-        px={3}
+        px={2.5}
         bg={bg}
         borderWidth="1px"
         borderColor={borderColor}
@@ -42,9 +42,9 @@ const GameOrderSelect = ({ value, options, onChange }: Props) => {
           fontSize="sm"
           fontWeight="medium"
           whiteSpace="nowrap"
-          mr={2}
+          mr={1}
         >
-          Order by
+          Sort
         </Text>
 
         <select
