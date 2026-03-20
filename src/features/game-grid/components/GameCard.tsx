@@ -6,9 +6,10 @@ import { useColorModeValue } from "../../../components/ui/color-mode";
 
 interface Props {
   game: Game;
+  onCardClick: () => void;
 }
 
-const GameCard = ({ game }: Props) => {
+const GameCard = ({ game, onCardClick }: Props) => {
   const isLongTitle = game.name.length > 28;
 
   const surface = useColorModeValue("white", "gray.900");
@@ -16,15 +17,11 @@ const GameCard = ({ game }: Props) => {
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.200");
   const headingColor = useColorModeValue("gray.900", "gray.100");
 
-  const handleCardClick = () => {
-    sessionStorage.setItem("gameGridScrollY", String(window.scrollY));
-  };
-
   return (
     <Link
       to={`/game/${game.id}`}
       state={{ game }}
-      onClick={handleCardClick}
+      onClick={onCardClick}
       style={{ textDecoration: "none" }}
     >
       <Box

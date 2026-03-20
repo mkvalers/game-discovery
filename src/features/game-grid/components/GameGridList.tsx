@@ -12,6 +12,7 @@ interface Props {
   hasNextPage: boolean;
   debouncedSearchQuery: string;
   loadMoreRef: React.RefObject<HTMLDivElement | null>;
+  onGameClick: () => void;
 }
 
 const GameGridList = ({
@@ -22,6 +23,7 @@ const GameGridList = ({
   hasNextPage,
   debouncedSearchQuery,
   loadMoreRef,
+  onGameClick,
 }: Props) => (
   <>
     {isError && <Text>Failed to load games.</Text>}
@@ -31,7 +33,11 @@ const GameGridList = ({
         isLoading ? (
           <GameInfoLoadingState key={`game-skeleton-${index}`} />
         ) : (
-          <GameCard key={(game as Game).id} game={game as Game} />
+          <GameCard
+            key={(game as Game).id}
+            game={game as Game}
+            onCardClick={onGameClick}
+          />
         ),
       )}
     </SimpleGrid>
@@ -43,7 +49,9 @@ const GameGridList = ({
     <div ref={loadMoreRef} />
 
     {isFetchingNextPage && !debouncedSearchQuery && <CommonSpinner />}
-    {!hasNextPage && games.length > 0 && <Text mt={4}>You reached the end.</Text>}
+    {!hasNextPage && games.length > 0 && (
+      <Text mt={4}>You reached the end.</Text>
+    )}
   </>
 );
 

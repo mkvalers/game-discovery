@@ -23,7 +23,7 @@ const GameGridPage = () => {
   const { games, isLoading, isError, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useGameGridGames(selectedGenreId, debouncedSearchQuery, ordering);
 
-  useGameGridScrollRestore({ isLoading, gamesLength: games.length });
+  const { saveScrollPosition } = useGameGridScrollRestore({ isLoading, gamesLength: games.length });
 
   const loadMoreRef = useInfiniteScrollLoadMore({ hasNextPage, isFetchingNextPage, fetchNextPage });
 
@@ -48,6 +48,7 @@ const GameGridPage = () => {
         hasNextPage={hasNextPage}
         debouncedSearchQuery={debouncedSearchQuery}
         loadMoreRef={loadMoreRef}
+        onGameClick={saveScrollPosition}
       />
       <ReturnToTopButton />
     </>

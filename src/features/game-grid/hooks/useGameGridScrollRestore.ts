@@ -11,6 +11,10 @@ const useGameGridScrollRestore = ({
 }: UseGameGridScrollRestoreParams) => {
   const hasRestoredScrollRef = useRef(false);
 
+  const saveScrollPosition = () => {
+    sessionStorage.setItem("gameGridScrollY", String(window.scrollY));
+  };
+
   useLayoutEffect(() => {
     if (hasRestoredScrollRef.current) return;
 
@@ -18,11 +22,7 @@ const useGameGridScrollRestore = ({
     if (!storedScrollY) return;
 
     const targetScrollY = Number(storedScrollY);
-    window.scrollTo({
-      top: targetScrollY,
-      left: 0,
-      behavior: "auto",
-    });
+    window.scrollTo({ top: targetScrollY, left: 0, behavior: "auto" });
 
     const reachedTarget = Math.abs(window.scrollY - targetScrollY) <= 2;
     if (!reachedTarget && isLoading) return;
@@ -30,6 +30,8 @@ const useGameGridScrollRestore = ({
     hasRestoredScrollRef.current = true;
     sessionStorage.removeItem("gameGridScrollY");
   }, [isLoading, gamesLength]);
+
+  return { saveScrollPosition };
 };
 
 export default useGameGridScrollRestore;
