@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { GameOrdering } from "../features/game-grid/hooks/useGameOrdering";
+import type { GameOrdering } from "./types";
 
 interface RawgNamedItem {
     name: string;
@@ -87,45 +87,26 @@ class RawgApiClient {
     ): Promise<FetchGamesResponse> => {
         const params: { genres?: number; search?: string; ordering?: GameOrdering } = {};
 
-        if (genreId) {
-            params.genres = genreId;
-        }
-
-        if (searchQuery) {
-            params.search = searchQuery;
-        }
-
-        if (ordering) {
-            params.ordering = ordering;
-        }
+        if (genreId) params.genres = genreId;
+        if (searchQuery) params.search = searchQuery;
+        if (ordering) params.ordering = ordering;
 
         return this.apiClient
-            .get("/games", {
-                params: Object.keys(params).length > 0 ? params : undefined,
-            })
-            .then((response) => response.data)
-            .catch((error) => {
-                console.error("Error fetching games:", error);
-                throw error;
-            });
+            .get("/games", { params: Object.keys(params).length > 0 ? params : undefined })
+            .then((response) => response.data);
     };
 
-    genGenres = (): Promise<FetchGenresResponse> => {
-        return this.apiClient
-            .get("/genres")
-            .then((response) => response.data)
-            .catch((error) => {
-                console.error("Error fetching genres:", error);
-                throw error;
-            });
-    };
+    getGamesByUrl = (url: string): Promise<FetchGamesResponse> =>
+        this.apiClient.get<FetchGamesResponse>(url).then((response) => response.data);
 
-    getGameInfo = (id: number): Promise<GameInfo> => {
-        return this.apiClient
+    genGenres = (): Promise<FetchGenresResponse> =>
+        this.apiClient.get("/genres").then((response) => response.data);
+
+    getGameInfo = (id: number): Promise<GameInfo> =>
+        this.apiClient
             .get<RawgGameInfoResponse>(`/games/${id}`)
             .then((response) => {
                 const game = response.data;
-
                 return {
                     id: game.id,
                     name: game.name,
@@ -136,13 +117,7 @@ class RawgApiClient {
                     developer: game.developers?.map((item) => item.name) ?? [],
                     parent_platforms: game.parent_platforms,
                 };
-            })
-            .catch((error) => {
-                console.error("Error fetching game details:", error);
-                throw error;
             });
-    };
-
 }
 
 const rawgApiClient = new RawgApiClient();

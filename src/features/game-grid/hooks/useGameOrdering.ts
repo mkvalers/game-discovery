@@ -1,12 +1,7 @@
 import { useState } from "react";
+import type { GameOrdering } from "../../../api-clients/types";
 
-export type GameOrdering =
-  | ""
-  | "-added"
-  | "name"
-  | "-released"
-  | "-metacritic"
-  | "-rating";
+export type { GameOrdering };
 
 export interface GameOrderingOption {
   label: string;

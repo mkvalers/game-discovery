@@ -1,9 +1,11 @@
-import { Stack } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import type { GameInfo } from "../../../api-clients/rawg-api-client";
+import { useColorModeValue } from "../../../components/ui/color-mode";
 import BackToGamesButton from "./BackToGamesButton";
 import GameInfoHero from "./GameInfoHero";
 import GameInfoMeta from "./GameInfoMeta";
 import GameInfoAbout from "./GameInfoAbout";
+
 import GameInfoMetaCard from "./GameInfoMetaCard";
 
 interface Props {
@@ -11,8 +13,10 @@ interface Props {
 }
 
 const GameInfoContent = ({ game }: Props) => {
+  const pageBg = useColorModeValue("gray.50", "gray.950");
+
   return (
-    <>
+    <Box bg={pageBg} borderRadius="2xl" p={{ base: 3, md: 5 }}>
       <BackToGamesButton />
 
       <Stack gap={{ base: 5, lg: 7 }} pb={10} maxW="6xl" mx="auto">
@@ -40,7 +44,7 @@ const GameInfoContent = ({ game }: Props) => {
           </Stack>
         </Stack>
       </Stack>
-    </>
+    </Box>
   );
 };
 

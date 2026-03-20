@@ -4,7 +4,7 @@ import rawgApiClient, {
   type FetchGamesResponse,
   type Game,
 } from "../rawg-api-client";
-import type { GameOrdering } from "../../features/game-grid/hooks/useGameOrdering";
+import type { GameOrdering } from "../types";
 
 export type { Game, FetchGamesResponse };
 
@@ -27,9 +27,7 @@ const useGames = (
         return await rawgApiClient.getGames(genreId, searchQuery, ordering);
       }
 
-      const response =
-        await rawgApiClient.apiClient.get<FetchGamesResponse>(pageParam);
-      return response.data;
+      return await rawgApiClient.getGamesByUrl(pageParam);
     },
     getNextPageParam: (lastPage) => lastPage.next ?? undefined,
     staleTime: 1000 * 60 * 5,
