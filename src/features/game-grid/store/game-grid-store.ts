@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { GameOrdering } from "../../../api-clients/types";
+import type { GameOrdering } from "@/api-clients/types";
 
 export type { GameOrdering };
 

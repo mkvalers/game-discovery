@@ -1,7 +1,7 @@
 import type { ChangeEvent } from "react";
-import { useColorModeValue } from "../../../components/ui/color-mode";
-import StyledSelect from "../../../components/StyledSelect";
-import type { GameOrdering, GameOrderingOption } from "../store/game-grid-store";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import StyledSelect from "@/components/StyledSelect";
+import type { GameOrdering, GameOrderingOption } from "@/features/game-grid/store/game-grid-store";
 
 interface Props {
   value: GameOrdering;

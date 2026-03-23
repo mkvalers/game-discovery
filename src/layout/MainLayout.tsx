@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react/box";
-import NavBar from "../components/NavBar";
+import NavBar from "@/components/NavBar";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 

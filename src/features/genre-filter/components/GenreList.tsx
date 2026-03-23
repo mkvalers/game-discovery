@@ -8,7 +8,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import type { Genre } from "../../../api-clients/hooks/useGenres";
+import type { Genre } from "@/api-clients/hooks/useGenres";
 
 interface Props {
   genres: Genre[];

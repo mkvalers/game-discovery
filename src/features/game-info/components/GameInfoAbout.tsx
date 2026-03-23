@@ -1,6 +1,6 @@
 import { Box, Text } from "@chakra-ui/react";
-import { useColorModeValue } from "../../../components/ui/color-mode";
-import useCardSurface from "../../../components/useCardSurface";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import useCardSurface from "@/components/useCardSurface";
 
 interface Props {
   content: string;

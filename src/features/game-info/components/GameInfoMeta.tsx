@@ -1,6 +1,6 @@
 import { Badge, Stack, HStack } from "@chakra-ui/react";
-import PlatformIcons from "../../../components/PlatformIcons";
-import type { ParentPlatformEntry } from "../../../api-clients/rawg-api-client";
+import PlatformIcons from "@/components/PlatformIcons";
+import type { ParentPlatformEntry } from "@/api-clients/rawg-api-client";
 
 interface Props {
   releaseDate?: string;

@@ -1,9 +1,9 @@
 import { Box, Heading, Image } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import type { Game } from "../../../api-clients/hooks/useGames";
+import type { Game } from "@/api-clients/hooks/useGames";
 import GameCardDetails from "./GameCardDetails";
-import { useColorModeValue } from "../../../components/ui/color-mode";
-import useCardSurface from "../../../components/useCardSurface";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import useCardSurface from "@/components/useCardSurface";
 
 const LONG_TITLE_THRESHOLD = 28;
 

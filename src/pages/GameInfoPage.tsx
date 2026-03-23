@@ -1,9 +1,9 @@
 import { Text } from "@chakra-ui/react";
-import GameInfoContent from "../features/game-info/components/GameInfoContent";
-import useGameInfo from "../api-clients/hooks/useGameInfo";
-import useGameInfoRouteId from "../features/game-info/hooks/useGameInfoRouteId";
-import useScrollToTopOnMount from "../features/game-info/hooks/useScrollToTopOnMount";
-import GameInfoSkeleton from "../features/game-info/components/GameInfoSkeleton";
+import GameInfoContent from "@/features/game-info/components/GameInfoContent";
+import useGameInfo from "@/api-clients/hooks/useGameInfo";
+import useGameInfoRouteId from "@/features/game-info/hooks/useGameInfoRouteId";
+import useScrollToTopOnMount from "@/features/game-info/hooks/useScrollToTopOnMount";
+import GameInfoSkeleton from "@/features/game-info/components/GameInfoSkeleton";
 
 const GameInfoPage = () => {
   const { gameId, hasInvalidId } = useGameInfoRouteId();

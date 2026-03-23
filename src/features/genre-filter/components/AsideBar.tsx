@@ -1,6 +1,6 @@
-import useGenres from "../../../api-clients/hooks/useGenres";
-import useGenreStore from "../store/genre-store";
-import useGenreSelection from "../hooks/useGenreSelection";
+import useGenres from "@/api-clients/hooks/useGenres";
+import useGenreStore from "@/features/genre-filter/store/genre-store";
+import useGenreSelection from "@/features/genre-filter/hooks/useGenreSelection";
 import GenreList from "./GenreList";
 import GenreListSkeleton from "./GenreListSkeleton";
 

@@ -1,8 +1,8 @@
 import { Box, Text } from "@chakra-ui/react";
 import type { ChangeEvent } from "react";
-import type { Genre } from "../../../api-clients/hooks/useGenres";
-import { useColorModeValue } from "../../../components/ui/color-mode";
-import StyledSelect from "../../../components/StyledSelect";
+import type { Genre } from "@/api-clients/hooks/useGenres";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import StyledSelect from "@/components/StyledSelect";
 
 interface Props {
   genres: Genre[];

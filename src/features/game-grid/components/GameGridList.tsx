@@ -1,8 +1,8 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import { type Game } from "../../../api-clients/hooks/useGames";
+import { type Game } from "@/api-clients/hooks/useGames";
 import GameCard from "./GameCard";
 import GameInfoLoadingState from "./GameInfoLoadingState";
-import CommonSpinner from "../../../components/CommonSpinner";
+import CommonSpinner from "@/components/CommonSpinner";
 
 interface Props {
   games: Game[];

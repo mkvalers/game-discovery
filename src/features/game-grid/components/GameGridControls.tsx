@@ -1,10 +1,10 @@
 import { Box, Flex, Grid, HStack } from "@chakra-ui/react";
 import GameSearchBar from "./GameSearchBar";
 import GameOrderSelect from "./GameOrderSelect";
-import GenreFilterSelect from "../../genre-filter/components/GenreFilterSelect";
-import useGameGridStore, { gameOrderingOptions } from "../store/game-grid-store";
-import useGenreStore from "../../genre-filter/store/genre-store";
-import useGenres from "../../../api-clients/hooks/useGenres";
+import GenreFilterSelect from "@/features/genre-filter/components/GenreFilterSelect";
+import useGameGridStore, { gameOrderingOptions } from "@/features/game-grid/store/game-grid-store";
+import useGenreStore from "@/features/genre-filter/store/genre-store";
+import useGenres from "@/api-clients/hooks/useGenres";
 
 const GameGridControls = () => {
   const searchQuery = useGameGridStore((s) => s.searchQuery);

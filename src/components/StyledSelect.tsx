@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import type { ChangeEvent, ReactNode } from "react";
-import { useColorModeValue } from "./ui/color-mode";
-import useCardSurface from "./useCardSurface";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import useCardSurface from "@/components/useCardSurface";
 
 interface Props {
   value: string | number;

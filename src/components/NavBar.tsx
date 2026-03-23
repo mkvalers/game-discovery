@@ -1,6 +1,6 @@
 import { Box, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import useCardSurface from "./useCardSurface";
+import useCardSurface from "@/components/useCardSurface";
 import { IoGameControllerOutline } from "react-icons/io5";
 
 const NavBar = () => {
