@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 import { Grid, GridItem } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import CommonSpinner from "@/components/CommonSpinner";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 interface Props {
   aside?: React.ReactNode;
@@ -39,9 +40,11 @@ const MainLayout = ({ aside }: Props) => {
         </GridItem>
 
         <GridItem area="main">
-          <Suspense fallback={<CommonSpinner minH="75vh" />}>
-            <Outlet />
-          </Suspense>
+          <ErrorBoundary>
+            <Suspense fallback={<CommonSpinner minH="75vh" />}>
+              <Outlet />
+            </Suspense>
+          </ErrorBoundary>
         </GridItem>
       </Grid>
     </Box>
