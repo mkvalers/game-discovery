@@ -1,11 +1,10 @@
 import { Box, Stack } from "@chakra-ui/react";
-import type { GameInfo } from "../../../api-clients/rawg-api-client";
-import { useColorModeValue } from "../../../components/ui/color-mode";
+import type { GameInfo } from "@/api-clients/rawg-api-client";
+import { useColorModeValue } from "@/components/ui/color-mode";
 import BackToGamesButton from "./BackToGamesButton";
 import GameInfoHero from "./GameInfoHero";
 import GameInfoMeta from "./GameInfoMeta";
 import GameInfoAbout from "./GameInfoAbout";
-
 import GameInfoMetaCard from "./GameInfoMetaCard";
 
 interface Props {

@@ -1,5 +1,5 @@
 import { Input } from "@chakra-ui/react";
-import { useColorModeValue } from "../../../components/ui/color-mode";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 interface Props {
   value: string;

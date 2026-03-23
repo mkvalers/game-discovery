@@ -1,6 +1,6 @@
 import { Button, HStack, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { useColorModeValue } from "../../../components/ui/color-mode";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 const BackToGamesButton = () => {
   const bg = useColorModeValue("white", "whiteAlpha.100");

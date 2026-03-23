@@ -1,7 +1,7 @@
 import { Badge, Stack } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
-import PlatformIcons from "../../../components/PlatformIcons";
-import type { ParentPlatformEntry } from "../../../api-clients/rawg-api-client";
+import PlatformIcons from "@/components/PlatformIcons";
+import type { ParentPlatformEntry } from "@/api-clients/rawg-api-client";
 
 interface Props {
   platforms?: ParentPlatformEntry[];

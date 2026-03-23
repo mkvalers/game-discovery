@@ -3,8 +3,8 @@ import { AxiosError } from "axios";
 import rawgApiClient, {
   type FetchGamesResponse,
   type Game,
-} from "../rawg-api-client";
-import type { GameOrdering } from "../types";
+} from "@/api-clients/rawg-api-client";
+import type { GameOrdering } from "@/api-clients/types";
 
 export type { Game, FetchGamesResponse };
 

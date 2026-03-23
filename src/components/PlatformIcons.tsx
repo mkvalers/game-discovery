@@ -9,8 +9,8 @@ import {
   FaWindows,
   FaXbox,
 } from "react-icons/fa";
-import { useColorModeValue } from "./ui/color-mode";
-import type { ParentPlatformEntry } from "../api-clients/rawg-api-client";
+import { useColorModeValue } from "@/components/ui/color-mode";
+import type { ParentPlatformEntry } from "@/api-clients/rawg-api-client";
 
 type PlatformSlug =
   | "pc"

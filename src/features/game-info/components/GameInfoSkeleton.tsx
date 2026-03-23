@@ -1,5 +1,5 @@
 import { Box, Skeleton, SimpleGrid, Stack } from "@chakra-ui/react";
-import { useColorModeValue } from "../../../components/ui/color-mode";
+import { useColorModeValue } from "@/components/ui/color-mode";
 
 const GameInfoSkeleton = () => {
   const pageBg = useColorModeValue("gray.50", "gray.950");

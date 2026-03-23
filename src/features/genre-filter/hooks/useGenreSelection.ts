@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import useGenreStore from "../store/genre-store";
+import useGenreStore from "@/features/genre-filter/store/genre-store";
 
 const useGenreSelection = () => {
   const setSelectedGenreId = useGenreStore((s) => s.setGenreId);
